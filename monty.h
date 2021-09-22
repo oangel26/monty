@@ -1,6 +1,8 @@
 #ifndef MONTY_H
 #define MONTY_H
+#define _GNU_SOURCE
 
+#include <stdio.h>
 #include <stdio.h>
 #include <fcntl.h>
 #include <stdlib.h>
@@ -42,19 +44,19 @@ typedef struct instruction_s
         void (*f)(stack_p **stack, unsigned int line_number);
 } instruction_t;
 
+void (*get_op_func(char *op_code))(stack_p** , unsigned int);
+
  /* Declaration of functions prototipes */
-void (*get_op_func(char *opcode))(stack_p **, unsigned int);
+void push_stack(stack_p **top, unsigned int line_number);
+void pall_stack(stack_p **top,unsigned int __attribute__((unused))line_number);
+void pint_stack(stack_p **top, unsigned int line_number);
+void pop_stack(stack_p **top, unsigned int line_number);
+void swap_stack(stack_p **top, unsigned int line_number);
+void add_stack(stack_p **top, unsigned int line_number);
+void nop_stack(stack_p __attribute__((unused))  **top, unsigned int __attribute__((unused)) line_number);
 
-void *push_stack(stack_p **top, unsigned int line_number);
-void *pall_stack(stack_p **top,unsigned int __attribute__((unused))line_number);
-void *pint_stack(stack_p **top, unsigned int line_number);
-
-void *pop_stack(stack_p **top, unsigned int line_number);
-void *swap_stack(stack_p **top, unsigned int line_number);
-void *add_stack(stack_p **top, unsigned int line_number);
-void *nop_stack(stack_p **top, unsigned int line_number);
-void *sup_stack(stack_p **top, int n);
-void *div_stack(stack_p **top, int n);
+void sup_stack(stack_p **top, int n);
+void div_stack(stack_p **top, int n);
 
 
 

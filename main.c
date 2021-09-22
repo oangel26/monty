@@ -11,11 +11,11 @@ int number;
 int main(int argc, char *argv[])
 {
 	FILE *fp;
-	char *str, *token;
+	char *str, *token1, *token2;
 	char line[BUFFER];
 	unsigned int line_counter = 0;
 	stack_p *top = NULL;
-	
+	void (*op_func)(stack_p**, unsigned int);
 
 	/* If the user doesnt give any file or more than one argu to the program */
 	if (argc != 2)
@@ -40,24 +40,26 @@ int main(int argc, char *argv[])
 			while ((str = fgets(line, BUFFER, fp)) != NULL)
 			{
 				line_counter++;
-				token = strtok(str, " \n");
-				if (strcmp(token, "push") == 0)
+				token1 = strtok(str, " \n");
+				/* print("token 1: %s\n", token1);*/
+				if (strcmp(token1, "push") == 0)
 				{
-					token = strtok(NULL, "  \n");
-					if (token == NULL)
+					token2 = strtok(NULL, "  \n");
+					if (token2 == NULL)
 					{
+						/*print("se metio en token2 = NULL") */
 						number = '\0';
-						push_stack(&top, line_counter);
+						op_func = get_op_func(token1);
+						op_func(&top, line_counter);
 					}
-					number = atoi(token);
-					push_stack(&top, line_counter);
+					number = atoi(token2);
+					op_func = get_op_func(token1);
+					op_func(&top, line_counter);
 				}
 				else
 				{
-					if (strcmp(token, "pall") == 0)
-						pall_stack(&top, line_counter);
-					else if (strcmp(token, "pint") == 0)
-						pint_stack(&top, line_counter);
+					op_func = get_op_func(token1);
+					op_func(&top, line_counter);
 				}
 			}
 			fclose(fp);
