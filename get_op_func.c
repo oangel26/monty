@@ -5,7 +5,7 @@
  *
  * Return: Always 0.
  */
-void (*get_op_func(char *opcode))(stack_t **stack, unsigned int line_number)
+void (*get_op_func(char *opcode))(stack_t, unsigned int)
 {
 	instruction_t op_code[] = {
         {"push", push_stack},
@@ -27,5 +27,15 @@ void (*get_op_func(char *opcode))(stack_t **stack, unsigned int line_number)
 		{"queue", op_mod},
         {NULL, NULL}
     };
-    int i;
+
+	int i = 0;
+
+	while (*(op_code[i]).opcode != NULL)
+	{
+		if (strcmp(*(op_code[i]).opcode, *opcode) == 0)
+			return (stack_t *)((op_code + i)->f);
+		i++;
+	}
+	return (NULL);
 }
+

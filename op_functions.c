@@ -5,7 +5,7 @@
  *
  * Return: Always 0.
  */
-stack_t *push_stack(stack_t **top, int n)
+stack_t *push_stack(stack_t **top, unsigned int line_number)
 {
 	stack_t *new_top;
 
@@ -17,7 +17,7 @@ stack_t *push_stack(stack_t **top, int n)
 		dprintf(2, "Error: malloc failed");
 		exit(EXIT_FAILURE);
 	}
-	new_top->n = number;
+	new_top->n = atoi(number);
 	new_top->prev = NULL;
 	new_top->next = NULL;
 	
@@ -126,8 +126,7 @@ stack_t *pop_stack(stack_t **top, unsigned int line_number)
  */
 stack_t *swap_stack(stack_t **top, unsigned int line_number)
 {
-	stack_t *nptr = *top;
-	
+	/* EDGE case: If the stack contains less than two elements */
 	if (*top == NULL || top == NULL || (*top)->next == NULL)
      {
          fprintf(2, "L%d: can't swap, stack too short", line_number);
@@ -144,17 +143,18 @@ stack_t *swap_stack(stack_t **top, unsigned int line_number)
 			(*top)->next = NULL;
 			*top = (*top)->prev;
 		}
+		/* EDGE case: stack has more than two elements */
 		else
 		{
-			(*top)->next->next->prev = *top;
 			(*top)->prev = (*top)->next;
-			(*top)->next->next = (*top);
-			(*top)->next->prev = NULL;
-			(*top)->next = ;
-			*top =	(*top)->prev;
+			(*top)->next = (*top)->next->next;
+			(*top)->next->prev = *top;
+			(*top)->prev->next = *top;
+			(*top)->prev->prev = NULL;
+			(*top) = (*top)->prev;
 		}
+		return (*top);
 	}
-
 }
 
 /**
@@ -164,6 +164,24 @@ stack_t *swap_stack(stack_t **top, unsigned int line_number)
  */
 stack_t *add_stack(stack_t **top, unsigned int line_number)
 {
+	int sum = 0;
+	stack_t *tmp_node = *top;
+	
+	/* EDGE case: If the stack contains less than two elements */
+     if (*top == NULL || top == NULL || (*top)->next == NULL)
+      {
+          fprintf(2, "L%d: can't add, stack too short", line_number);
+          exit(EXIT_FAILURE);
+      }
+	 else
+	 {
+		 sum = (*top)->n + (*top)->next->n;
+		 (*top) = (*top)->next;
+		 (*top)->n = sum;
+		 (*top)->prev = NULL;
+		 free(tmp_node);
+	 }
+	 return (*top);
 }
 
 
@@ -174,109 +192,5 @@ stack_t *add_stack(stack_t **top, unsigned int line_number)
  */
 stack_t *nop_stack(stack_t **top, unsigned int line_number)
 {
-	
-}
-
-
-
-/* DE AQUI PA ABAJO */
-
-
-/**
- * nop_stack - Function that does not do anything
- *
- * Return: Always 0.
- */
-stack_t *nop_stack(stack_t **top, int n)
-{
-}
-
-/**
- * nop_stack - Function that does not do anything
- *
- * Return: Always 0.
- */
-stack_t *nop_stack(stack_t **top, int n)
-{
-}
-
-/**
- * nop_stack - Function that does not do anything
- *
- * Return: Always 0.
- */
-stack_t *nop_stack(stack_t **top, int n)
-{
-}
-
-/**
- * nop_stack - Function that does not do anything
- *
- * Return: Always 0.
- */
-stack_t *nop_stack(stack_t **top, int n)
-{
-}
-
-/**
- * nop_stack - Function that does not do anything
- *
- * Return: Always 0.
- */
-stack_t *nop_stack(stack_t **top, int n)
-{
-}
-
-/**
- * nop_stack - Function that does not do anything
- *
- * Return: Always 0.
- */
-stack_t *nop_stack(stack_t **top, int n)
-{
-}
-
-/**
- * nop_stack - Function that does not do anything
- *
- * Return: Always 0.
- */
-stack_t *nop_stack(stack_t **top, int n)
-{
-}
-
-/**
- * nop_stack - Function that does not do anything
- *
- * Return: Always 0.
- */
-stack_t *nop_stack(stack_t **top, int n)
-{
-}
-
-/**
- * nop_stack - Function that does not do anything
- *
- * Return: Always 0.
- */
-stack_t *nop_stack(stack_t **top, int n)
-{
-}
-
-/**
- * nop_stack - Function that does not do anything
- *
- * Return: Always 0.
- */
-stack_t *nop_stack(stack_t **top, int n)
-{
-}
-
-/**
- * nop_stack - Function that does not do anything
- *
- * Return: Always 0.
- */
-stack_t *nop_stack(stack_t **top, int n)
-{
+	return;
 }

@@ -7,6 +7,10 @@
 #include <unistd.h>
 #include <string.h>
 
+/* Declaration of global variable */
+extern int number;
+
+/* Declaration of data structures */
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -16,15 +20,12 @@
  * Description: doubly linked list node structure
  * for stack, queues, LIFO, FIFO
  */
-
-/**
 typedef struct stack_s
 {
         int n;
         struct stack_s *prev;
         struct stack_s *next;
 } stack_t;
-**/
 
 
 /**
@@ -41,7 +42,19 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/* Declaration of global variable (integer) number  */
-extern int number;
+/* Declaration of functions prototipes */
+void (*get_op_func(char *opcode))(stack_t **stack, unsigned int line_number);
+void *push_stack(stack_t **top, unsigned int line_number);
+void *pall_stack(stack_t **top, unsigned int line_number);
+void *pint_stack(stack_t **top, unsigned int line_number);
+void *pop_stack(stack_t **top, unsigned int line_number);
+void *swap_stack(stack_t **top, unsigned int line_number);
+void *add_stack(stack_t **top, unsigned int line_number);
+void *nop_stack(stack_t **top, unsigned int line_number);
+void *sup_stack(stack_t **top, int n);
+void *div_stack(stack_t **top, int n);
+
+
+
 
 #endif /* MONTY_H */

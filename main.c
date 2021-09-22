@@ -13,11 +13,12 @@ int main(int argc, char *argv[])
 	FILE *fp;
 	char *str, *token;
 	char line[BUFFER];
-	int line_counter = 0;
+	unsigned int line_counter = 0;
 	stack_t *top = NULL;
-
-	/* Definition of global variable stack_t *top */
+	void (*func_call)(stack_t, unsigned int);
 	
+	int number;
+
 	/* If the user doesnt give any file or more than one argu to the program */
 	if (argc != 2)
 	{
@@ -41,13 +42,24 @@ int main(int argc, char *argv[])
 			while ((str = fgets(line, BUFFER, fp)) != NULL)
 			{
 				line_counter++;
-				printf("%s", str);
+				/* printf("line: %d\n", line_counter); */
 				token = strtok(str, " ");
-				/* Chunk line into tokens */
-				while (token != NULL)
+				/* printf("first token: %s\n", token); */
+				if (strcmp(token, "push") == 0)
 				{
-					printf("%s\n", token);
 					token = strtok(NULL, " ");
+					number = atoi(token);
+					printf("print the number: %d\n", number);
+					/*	printf("second token: %s\n", token); */
+				}
+				else
+				{
+					printf("get op func%p\n", get_op_func(token));
+					/* if (func_call == NULL)
+					{
+						dprintf (2, "ERROR");
+						exit(EXIT_FAILURE);
+						} */
 				}
 			}
 			fclose(fp);
