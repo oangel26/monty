@@ -6,6 +6,8 @@ int number;
 /**
  * main - check the code
  *
+ * @argc: Argument counter
+ * @argv: Argument array
  * Return: Always 0
  */
 int main(int argc, char *argv[])
@@ -14,8 +16,8 @@ int main(int argc, char *argv[])
 	char *str, *token1, *token2;
 	char line[BUFFER];
 	unsigned int line_counter = 0;
-	stack_p *top = NULL;
-	void (*op_func)(stack_p**, unsigned int);
+	stack_t *top = NULL;
+	void (*op_func)(stack_t**, unsigned int);
 
 	/* If the user doesnt give any file or more than one argu to the program */
 	if (argc != 2)
@@ -31,7 +33,7 @@ int main(int argc, char *argv[])
 		/* If it’s not possible to open the file */
 		if (fp == 0)
 		{
-			dprintf(2,"Error: Can't open file %s\n", argv[1]);
+			dprintf(2, "Error: Can't open file %s\n", argv[1]);
 			exit(EXIT_FAILURE);
 		}
 		else
@@ -65,4 +67,5 @@ int main(int argc, char *argv[])
 			fclose(fp);
 		}
 	}
+	return (0);
 }

@@ -3,18 +3,20 @@
 /**
  * push_stack - Function that pushs a node at the top of a stack_t stack.
  *
- * Return: Always 0.
+ * @top: Head of the linked list
+ * @line_number: Line count
+ *
  */
-void push_stack(stack_p **top, unsigned int line_number)
+void push_stack(stack_t **top, unsigned int line_number)
 {
-	stack_p *new_top;
+	stack_t *new_top;
 
 	if (number == '\0')
 	{
 		dprintf(2, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	new_top = malloc(sizeof(stack_p));
+	new_top = malloc(sizeof(stack_t));
 	if (new_top == NULL)
 	{
 		dprintf(2, "Error: malloc failed\n");
@@ -43,11 +45,13 @@ void push_stack(stack_p **top, unsigned int line_number)
  * pall_stack - Funtion that prints all the values on the stack_t stack
  * starting form the top of the stack
  *
- * Return: Always 0.
+ * @top: Head of the linked list
+ * @line_number: Line count
+ *
  */
-void pall_stack(stack_p **top,unsigned int __attribute__((unused))line_number)
+void pall_stack(stack_t **top, unsigned int __attribute__((unused))line_number)
 {
-	stack_p *ptr = *top;
+	stack_t *ptr = *top;
 
 	/* GUARD conditions if stack is empty or does not exist */
 	if (*top == NULL || top == NULL)
@@ -67,9 +71,11 @@ void pall_stack(stack_p **top,unsigned int __attribute__((unused))line_number)
  * pint_stack - Funtion that prints the value at the top of a stack_t stack
  * followed by a new line.
  *
- * Return: void 
+ * @top: Head of the linked list
+ * @line_number: Line count
+ *
  */
-void pint_stack(stack_p **top, unsigned int line_number)
+void pint_stack(stack_t **top, unsigned int line_number)
 {
 	/* GUARD conditions if stack is empty or does not exist */
 	if (*top == NULL || top == NULL)
@@ -86,13 +92,15 @@ void pint_stack(stack_p **top, unsigned int line_number)
 /**
  * pop_stack - Function that removes the top element of a stack_t stack
  *
- * Return: Always 0.
+ * @top: Head of the linked list
+ * @line_number: Line count
+ *
  */
-void pop_stack(stack_p **top, unsigned int line_number)
+void pop_stack(stack_t **top, unsigned int line_number)
 {
-	stack_p *ptr = *top;
-	
-	/* GUARD conditions if stack is empty or does not exist */
+	stack_t *ptr = *top;
+
+/* GUARD conditions if stack is empty or does not exist */
 	if (*top == NULL || top == NULL)
 	{
 		dprintf(2, "L%d: can't pop an empty stack", line_number);
@@ -118,16 +126,18 @@ void pop_stack(stack_p **top, unsigned int line_number)
 /**
  * swap_stack - Function that swaps the top two elementes of a stack_t stack
  *
- * Return: Always 0.
+ * @top: Head of the linked list
+ * @line_number: Line count
+ *
  */
-void swap_stack(stack_p **top, unsigned int line_number)
+void swap_stack(stack_t **top, unsigned int line_number)
 {
 	/* EDGE case: If the stack contains less than two elements */
 	if (*top == NULL || top == NULL || (*top)->next == NULL)
-     {
-         dprintf(2, "L%d: can't swap, stack too short", line_number);
-         exit(EXIT_FAILURE);
-     }
+	{
+		dprintf(2, "L%d: can't swap, stack too short", line_number);
+		exit(EXIT_FAILURE);
+	}
 	else
 	{
 		/* EDGE case: stack has two elements */
@@ -150,41 +160,4 @@ void swap_stack(stack_p **top, unsigned int line_number)
 			(*top) = (*top)->prev;
 		}
 	}
-}
-
-/**
- * add_stack - Function that adds the top two elements of a stack_t stack
- *
- * Return: Always 0.
- */
-void add_stack(stack_p **top, unsigned int line_number)
-{
-	int sum = 0;
-	stack_p *tmp_node = *top;
-	
-	/* EDGE case: If the stack contains less than two elements */
-     if (*top == NULL || top == NULL || (*top)->next == NULL)
-      {
-          dprintf(2, "L%d: can't add, stack too short", line_number);
-          exit(EXIT_FAILURE);
-      }
-	 else
-	 {
-		 sum = (*top)->n + (*top)->next->n;
-		 (*top) = (*top)->next;
-		 (*top)->n = sum;
-		 (*top)->prev = NULL;
-		 free(tmp_node);
-	 }
-}
-
-
-/**
- * nop_stack - Function that does not do anything
- *
- * Return: Always 0.
- */
-void nop_stack(stack_p __attribute__((unused))  **top, unsigned int __attribute__((unused)) line_number)
-{
-	return;
 }

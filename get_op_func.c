@@ -1,14 +1,16 @@
 #include "monty.h"
 
 /**
- * main - check the code
+ * get_op_func - Matches opcode with corresponding function
  *
- * Return: Always 0.
+ * @op_code: Opcode to match
+ *
+ * Return: Pointer to corresponding function
  */
-void (*get_op_func(char *op_code))(stack_p**, unsigned int)
+void (*get_op_func(char *op_code))(stack_t**, unsigned int)
 {
 	instruction_t op_fun[] = {
-        {"push", push_stack},
+		{"push", push_stack},
 		{"pall", pall_stack},
 		{"pint", pint_stack},
 		{"pop", pop_stack},
@@ -16,8 +18,8 @@ void (*get_op_func(char *op_code))(stack_p**, unsigned int)
 		{"add", add_stack},
 		{"nop", nop_stack},
 		{NULL, NULL}
-    };
-	
+	};
+
 	int i = 0;
 
 	while (op_fun[i].opcode != NULL)

@@ -24,11 +24,10 @@ extern int number;
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
-} stack_p;
-
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
+} stack_t;
 
 /**
  * struct instruction_s - opcode and its function
@@ -40,25 +39,23 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_p **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void (*get_op_func(char *op_code))(stack_p** , unsigned int);
+void (*get_op_func(char *op_code))(stack_t**, unsigned int);
 
  /* Declaration of functions prototipes */
-void push_stack(stack_p **top, unsigned int line_number);
-void pall_stack(stack_p **top,unsigned int __attribute__((unused))line_number);
-void pint_stack(stack_p **top, unsigned int line_number);
-void pop_stack(stack_p **top, unsigned int line_number);
-void swap_stack(stack_p **top, unsigned int line_number);
-void add_stack(stack_p **top, unsigned int line_number);
-void nop_stack(stack_p __attribute__((unused))  **top, unsigned int __attribute__((unused)) line_number);
-
-void sup_stack(stack_p **top, int n);
-void div_stack(stack_p **top, int n);
-
-
-
+void push_stack(stack_t **top, unsigned int line_number);
+void pall_stack(stack_t **top,
+		unsigned int __attribute__((unused))line_number);
+void pint_stack(stack_t **top, unsigned int line_number);
+void pop_stack(stack_t **top, unsigned int line_number);
+void swap_stack(stack_t **top, unsigned int line_number);
+void add_stack(stack_t **top, unsigned int line_number);
+void nop_stack(stack_t __attribute__((unused)) **top,
+	       unsigned int __attribute__((unused)) line_number);
+void sup_stack(stack_t **top, int n);
+void div_stack(stack_t **top, int n);
 
 #endif /* MONTY_H */
