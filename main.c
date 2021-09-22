@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 	char line[BUFFER];
 	unsigned int line_counter = 0;
 	stack_t *top = NULL;
-	void (*func_call)(stack_t, unsigned int);
+	void (*f)(stack_t, unsigned int);
 	
 	int number;
 
@@ -42,24 +42,18 @@ int main(int argc, char *argv[])
 			while ((str = fgets(line, BUFFER, fp)) != NULL)
 			{
 				line_counter++;
-				/* printf("line: %d\n", line_counter); */
 				token = strtok(str, " ");
-				/* printf("first token: %s\n", token); */
 				if (strcmp(token, "push") == 0)
 				{
 					token = strtok(NULL, " ");
 					number = atoi(token);
+					f = push_stack(&top, line_counter);
 					printf("print the number: %d\n", number);
-					/*	printf("second token: %s\n", token); */
 				}
 				else
 				{
-					printf("get op func%p\n", get_op_func(token));
-					/* if (func_call == NULL)
-					{
-						dprintf (2, "ERROR");
-						exit(EXIT_FAILURE);
-						} */
+					printf("get op func %s\n", token);
+					
 				}
 			}
 			fclose(fp);

@@ -5,7 +5,7 @@
  *
  * Return: Always 0.
  */
-stack_t *push_stack(stack_t **top, unsigned int line_number)
+void *push_stack(stack_t **top, unsigned int line_number)
 {
 	stack_t *new_top;
 
