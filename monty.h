@@ -25,7 +25,7 @@ typedef struct stack_s
         int n;
         struct stack_s *prev;
         struct stack_s *next;
-} stack_t;
+} stack_p;
 
 
 /**
@@ -36,43 +36,26 @@ typedef struct stack_s
  * Description: opcode and its function
  * for stack, queues, LIFO, FIFO
  */
-
-/*
 typedef struct instruction_s
 {
         char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+        void (*f)(stack_p **stack, unsigned int line_number);
 } instruction_t;
-*/
 
-void *push_stack(stack_t **top, unsigned int line_number);
-/*
-void *pall_stack)(stack_t **top, unsigned int line_number);
-  void *pint_stack(stack_t **top, unsigned int line_number);
-  void *pop_stack(stack_t **top, unsigned int line_number);
-  void *swap_stack(stack_t **top, unsigned int line_number);
-  void *add_stack(stack_t **top, unsigned int line_number);
-  void *nop_stack(stack_t **top, unsigned int line_number);
-  void *sup_stack(stack_t **top, int n);
-  void *div_stack(stack_t **top, int n); */
+ /* Declaration of functions prototipes */
+void (*get_op_func(char *opcode))(stack_p **, unsigned int);
 
+void *push_stack(stack_p **top, unsigned int line_number);
+void *pall_stack(stack_p **top,unsigned int __attribute__((unused))line_number);
+void *pint_stack(stack_p **top, unsigned int line_number);
 
+void *pop_stack(stack_p **top, unsigned int line_number);
+void *swap_stack(stack_p **top, unsigned int line_number);
+void *add_stack(stack_p **top, unsigned int line_number);
+void *nop_stack(stack_p **top, unsigned int line_number);
+void *sup_stack(stack_p **top, int n);
+void *div_stack(stack_p **top, int n);
 
-
-/* Declaration of functions prototipes 
-   void (*get_op_func(char *opcode))(stack_t **stack, unsigned int line_number);*/
-
-/*
-void *push_stack(stack_t **top, unsigned int line_number);
-void *pall_stack(stack_t **top, unsigned int line_number);
-void *pint_stack(stack_t **top, unsigned int line_number);
-void *pop_stack(stack_t **top, unsigned int line_number);
-void *swap_stack(stack_t **top, unsigned int line_number);
-void *add_stack(stack_t **top, unsigned int line_number);
-void *nop_stack(stack_t **top, unsigned int line_number);
-void *sup_stack(stack_t **top, int n);
-void *div_stack(stack_t **top, int n);
-*/
 
 
 

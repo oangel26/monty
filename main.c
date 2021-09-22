@@ -2,22 +2,20 @@
 
 #define BUFFER 1024
 
+int number;
 /**
  * main - check the code
  *
  * Return: Always 0
  */
-
 int main(int argc, char *argv[])
 {
 	FILE *fp;
 	char *str, *token;
 	char line[BUFFER];
 	unsigned int line_counter = 0;
-	stack_t *top = NULL;
-	void (*f)(stack_t, unsigned int);
+	stack_p *top = NULL;
 	
-	int number;
 
 	/* If the user doesnt give any file or more than one argu to the program */
 	if (argc != 2)
@@ -42,18 +40,24 @@ int main(int argc, char *argv[])
 			while ((str = fgets(line, BUFFER, fp)) != NULL)
 			{
 				line_counter++;
-				token = strtok(str, " ");
+				token = strtok(str, " \n");
 				if (strcmp(token, "push") == 0)
 				{
-					token = strtok(NULL, " ");
+					token = strtok(NULL, "  \n");
+					if (token == NULL)
+					{
+						number = '\0';
+						push_stack(&top, line_counter);
+					}
 					number = atoi(token);
-					f = push_stack(&top, line_counter);
-					printf("print the number: %d\n", number);
+					push_stack(&top, line_counter);
 				}
 				else
 				{
-					printf("get op func %s\n", token);
-					
+					if (strcmp(token, "pall") == 0)
+						pall_stack(&top, line_counter);
+					else if (strcmp(token, "pint") == 0)
+						pint_stack(&top, line_counter);
 				}
 			}
 			fclose(fp);
