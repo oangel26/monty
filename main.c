@@ -43,6 +43,8 @@ int main(int argc, char *argv[])
 			{
 				line_counter++;
 				token1 = strtok(str, " \n");
+				if (token1 == NULL)
+					continue;
 				/* print("token 1: %s\n", token1);*/
 				if (strcmp(token1, "push") == 0)
 				{
