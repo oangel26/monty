@@ -69,6 +69,11 @@ int main(int argc, char *argv[])
 				else
 				{
 					op_func = get_op_func(token1);
+					if (op_func == NULL)
+					{
+						dprintf(2, "L%d: unknown instruction %s\n", line_counter, token1);
+						exit(EXIT_FAILURE);
+					}
 					op_func(&top, line_counter);
 				}
 			}

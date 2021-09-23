@@ -15,7 +15,7 @@ void add_stack(stack_t **top, unsigned int line_number)
 /* EDGE case: If the stack contains less than two elements */
 	if (*top == NULL || top == NULL || (*top)->next == NULL)
 	{
-		dprintf(2, "L%d: can't add, stack too short", line_number);
+		dprintf(2, "L%d: can't add, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	else

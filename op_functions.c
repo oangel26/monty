@@ -77,7 +77,7 @@ void pint_stack(stack_t **top, unsigned int line_number)
 	/* GUARD conditions if stack is empty or does not exist */
 	if (*top == NULL || top == NULL)
 	{
-		dprintf(2, "L%d: can't pint, stack empty", line_number);
+		dprintf(2, "L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	else
@@ -100,7 +100,7 @@ void pop_stack(stack_t **top, unsigned int line_number)
 /* GUARD conditions if stack is empty or does not exist */
 	if (*top == NULL || top == NULL)
 	{
-		dprintf(2, "L%d: can't pop an empty stack", line_number);
+		dprintf(2, "L%d: can't pop an empty stack\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	else
@@ -132,7 +132,7 @@ void swap_stack(stack_t **top, unsigned int line_number)
 	/* EDGE case: If the stack contains less than two elements */
 	if (*top == NULL || top == NULL || (*top)->next == NULL)
 	{
-		dprintf(2, "L%d: can't swap, stack too short", line_number);
+		dprintf(2, "L%d: can't swap, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	else
