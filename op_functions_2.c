@@ -22,7 +22,7 @@ void add_stack(stack_t **top, unsigned int line_number)
 	{
 		dprintf(2, "L%d: can't add, stack too short\n", line_number);
 		free(*top);
-		exit(EXIT_FAILURE);		
+		exit(EXIT_FAILURE);
 	}
 	else
 	{
@@ -64,4 +64,38 @@ void free_stack(stack_t **top)
 		free((*top)->prev);
 	}
 	free(*top);
+}
+
+/**
+ * sub_stack - Function that subtracts the top two elements of a stack_t stack
+ *
+ * @top: Head of the linked list
+ * @line_number: Line count
+ *
+ */
+void sub_stack(stack_t **top, unsigned int line_number)
+{
+	int sub = 0;
+	stack_t *tmp_node = *top;
+
+/* EDGE case: If the stack contains less than two elements */
+	if (*top == NULL || top == NULL)
+	{
+		dprintf(2, "L%d: can't sub, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	else if ((*top)->next == NULL)
+	{
+		dprintf(2, "L%d: can't sub, stack too short\n", line_number);
+		free(*top);
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		sub = (*top)->next->n - (*top)->n;
+		(*top) = (*top)->next;
+		(*top)->n = sub;
+		(*top)->prev = NULL;
+		free(tmp_node);
+	}
 }

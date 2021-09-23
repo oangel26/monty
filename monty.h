@@ -56,8 +56,7 @@ void swap_stack(stack_t **top, unsigned int line_number);
 void add_stack(stack_t **top, unsigned int line_number);
 void nop_stack(stack_t **top __attribute__((unused)),
 	       unsigned int line_number __attribute__((unused)));
-void sup_stack(stack_t **top, int n);
-void div_stack(stack_t **top, int n);
+void sub_stack(stack_t **top, unsigned int line_number)
 void free_stack(stack_t **top);
 
 #endif /* MONTY_H */
