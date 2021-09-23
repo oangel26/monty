@@ -93,7 +93,7 @@ void pchar_stack(stack_t **top, unsigned int line_number)
 
 	else
 	{
-		if ((*top)->n < 0 && (*top)->n > 255)
+		if ((*top)->n < 32 && (*top)->n > 126)
 		{
 			dprintf(2, "L%d: can't pchar, value out of range\n", line_number);
 			free_stack(&(*top));
