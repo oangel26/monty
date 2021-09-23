@@ -75,7 +75,7 @@ void pall_stack(stack_t **top,
 void pint_stack(stack_t **top, unsigned int line_number)
 {
 	/* GUARD conditions if stack is empty or does not exist */
-	if (*top == NULL || top == NULL)
+	if (*top == NULL)
 	{
 		dprintf(2, "L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
