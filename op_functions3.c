@@ -84,7 +84,6 @@ void mod_stack(stack_t **top, unsigned int line_number)
  */
 void pchar_stack(stack_t **top, unsigned int line_number)
 {
-
 /* EDGE case: If the stack contains less than two elements */
 	if (*top == NULL || top == NULL)
 	{
@@ -100,6 +99,6 @@ void pchar_stack(stack_t **top, unsigned int line_number)
 			free_stack(&(*top));
 			exit(EXIT_FAILURE);
 		}
-		printf("%c", (*top)->n);
+		printf("%c\n", (*top)->n);
 	}
 }
