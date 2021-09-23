@@ -19,7 +19,7 @@ void push_stack(stack_t **top,
 		free_stack(&(*top));
 		exit(EXIT_FAILURE);
 	}
-	else if (new_top == NULL)
+	else if (new_top == NULL && *top == NULL)
 	{
 		dprintf(2, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
@@ -28,11 +28,6 @@ void push_stack(stack_t **top,
 	new_top->prev = NULL;
 	new_top->next = NULL;
 
-	if (top == NULL)
-	{
-		free(new_top);
-		return;
-	}
 	if (*top == NULL)
 		*top = new_top;
 	else
