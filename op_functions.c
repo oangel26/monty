@@ -13,10 +13,15 @@ void push_stack(stack_t **top,
 	stack_t *new_top;
 
 	new_top = malloc(sizeof(stack_t));
-	if (new_top == NULL)
+	if (new_top == NULL && *top != NULL)
 	{
 		dprintf(2, "Error: malloc failed\n");
 		free_stack(&top);
+		exit(EXIT_FAILURE);
+	}
+	else if (new_top == NULL)
+	{
+		dprintf(2, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	new_top->n = number;
