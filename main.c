@@ -81,5 +81,6 @@ int main(int argc, char *argv[])
 			fclose(fp);
 		}
 	}
+	free_stack(&top);
 	return (0);
 }
