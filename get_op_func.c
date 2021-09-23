@@ -18,6 +18,7 @@ void (*get_op_func(char *op_code))(stack_t**, unsigned int)
 		{"add", add_stack},
 		{"nop", nop_stack},
 		{"sub", sub_stack},
+		{"div", div_stack},
 		{NULL, NULL}
 	};
 
