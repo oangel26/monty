@@ -60,6 +60,7 @@ int main(int argc, char *argv[])
 						if (number == '\0')
 						{
 						 dprintf(2, "L%d: usage: push integer\n", line_counter);
+						 free_stack(&top);
 						 exit(EXIT_FAILURE);
 						}
 						op_func = get_op_func(token1);
