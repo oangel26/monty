@@ -13,10 +13,16 @@ void add_stack(stack_t **top, unsigned int line_number)
 	stack_t *tmp_node = *top;
 
 /* EDGE case: If the stack contains less than two elements */
-	if (*top == NULL || top == NULL || (*top)->next == NULL)
+	if (*top == NULL || top == NULL)
 	{
 		dprintf(2, "L%d: can't add, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
+	}
+	else if ((*top)->next == NULL)
+	{
+		dprintf(2, "L%d: can't add, stack too short\n", line_number);
+		free(*top);
+		exit(EXIT_FAILURE);		
 	}
 	else
 	{
@@ -38,4 +44,24 @@ void add_stack(stack_t **top, unsigned int line_number)
 void nop_stack(stack_t **top __attribute__((unused)),
 	       unsigned int line_number __attribute__((unused)))
 {
+}
+
+/**
+ * free_stack - Function that frees the memory
+ *
+ * @top: Head of the linked list
+ *
+ */
+void free_stack(stack_t **top)
+{
+	if (*top == NULL || top == NULL)
+	{
+		return;
+	}
+	while ((*top)->next != NULL)
+	{
+		*top = (*top)->next;
+		free((*top)->prev);
+	}
+	free(*top);
 }

@@ -58,5 +58,6 @@ void nop_stack(stack_t **top __attribute__((unused)),
 	       unsigned int line_number __attribute__((unused)));
 void sup_stack(stack_t **top, int n);
 void div_stack(stack_t **top, int n);
+void free_stack(stack_t **top);
 
 #endif /* MONTY_H */

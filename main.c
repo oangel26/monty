@@ -72,6 +72,7 @@ int main(int argc, char *argv[])
 					if (op_func == NULL)
 					{
 						dprintf(2, "L%d: unknown instruction %s\n", line_counter, token1);
+						free_stack(&top);
 						exit(EXIT_FAILURE);
 					}
 					op_func(&top, line_counter);
