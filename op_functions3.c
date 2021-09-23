@@ -92,8 +92,9 @@ void pchar_stack(stack_t **top, unsigned int line_number)
 	}
 	else
 	{
-		if (((*top)->n >= 65 && (*top)->n <= 90) ||
-			(((*top)->n >= 97 && (*top)->n <= 122)))
+		if ((*top)->n >= 65 && (*top)->n <= 90)
+			printf("%c\n", (*top)->n);
+		else if ((*top)->n >= 97 && (*top)->n <= 122)
 			printf("%c\n", (*top)->n);
 		else
 		{
@@ -114,21 +115,20 @@ void pchar_stack(stack_t **top, unsigned int line_number)
  */
 void pstr_stack(stack_t **top, unsigned int line_number)
 {
-/* EDGE case: If the stack contains less than two elements */
 	if (*top == NULL || top == NULL)
 	{
-		dprintf(2, "L%d: can't pchar, stack empty\n", line_number);
+		dprintf(2, "L%d: can't pstr, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-
 	else
 	{
-		if ((*top)->n < 32 && (*top)->n > 126)
+		while(*top != NULL)
 		{
-			dprintf(2, "L%d: can't pchar, value out of range\n", line_number);
-			free_stack(&(*top));
-			exit(EXIT_FAILURE);
+			if ((*top)->n >= 65 && (*top)->n <= 90)
+				printf("%c", (*top)->n);
+			else if ((*top)->n >= 97 && (*top)->n <= 122)
+				printf("%c", (*top)->n);
+			*top = (*top)->next;
 		}
-		printf("%c\n", (*top)->n);
 	}
 }
