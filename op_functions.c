@@ -7,15 +7,11 @@
  * @line_number: Line count
  *
  */
-void push_stack(stack_t **top, unsigned int line_number)
+void push_stack(stack_t **top,
+		unsigned int line_number __attribute__((unused)))
 {
 	stack_t *new_top;
 
-	if (number == '\0')
-	{
-		dprintf(2, "L%d: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
-	}
 	new_top = malloc(sizeof(stack_t));
 	if (new_top == NULL)
 	{
@@ -49,7 +45,8 @@ void push_stack(stack_t **top, unsigned int line_number)
  * @line_number: Line count
  *
  */
-void pall_stack(stack_t **top, unsigned int __attribute__((unused))line_number)
+void pall_stack(stack_t **top,
+		unsigned int line_number __attribute__((unused)))
 {
 	stack_t *ptr = *top;
 

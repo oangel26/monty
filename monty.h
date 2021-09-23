@@ -46,15 +46,16 @@ typedef struct instruction_s
 void (*get_op_func(char *op_code))(stack_t**, unsigned int);
 
  /* Declaration of functions prototipes */
-void push_stack(stack_t **top, unsigned int line_number);
+void push_stack(stack_t **top,
+		unsigned int line_number __attribute__((unused)));
 void pall_stack(stack_t **top,
-		unsigned int __attribute__((unused))line_number);
+		unsigned int line_number __attribute__((unused)));
 void pint_stack(stack_t **top, unsigned int line_number);
 void pop_stack(stack_t **top, unsigned int line_number);
 void swap_stack(stack_t **top, unsigned int line_number);
 void add_stack(stack_t **top, unsigned int line_number);
-void nop_stack(stack_t __attribute__((unused)) **top,
-	       unsigned int __attribute__((unused)) line_number);
+void nop_stack(stack_t **top __attribute__((unused)),
+	       unsigned int line_number __attribute__((unused)));
 void sup_stack(stack_t **top, int n);
 void div_stack(stack_t **top, int n);
 

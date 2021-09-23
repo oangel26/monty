@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 	/* If the user doesnt give any file or more than one argu to the program */
 	if (argc != 2)
 	{
-		dprintf(2, "USAGE: %s file\n", argv[0]);
+		dprintf(2, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	/* If user gives a file or arg to the program */
@@ -45,20 +45,26 @@ int main(int argc, char *argv[])
 				token1 = strtok(str, " \n");
 				if (token1 == NULL)
 					continue;
-				/* print("token 1: %s\n", token1);*/
 				if (strcmp(token1, "push") == 0)
 				{
 					token2 = strtok(NULL, "  \n");
-					if (token2 == NULL)
+					if (strcmp(token2, "0") == 0)
 					{
-						/*print("se metio en token2 = NULL") */
-						number = '\0';
+						number = 0;
 						op_func = get_op_func(token1);
 						op_func(&top, line_counter);
 					}
-					number = atoi(token2);
-					op_func = get_op_func(token1);
-					op_func(&top, line_counter);
+					else
+					{
+						number = atoi(token2);
+						if (number == '\0')
+						{
+						 dprintf(2, "L%d: usage: push integer\n", line_counter);
+						 exit(EXIT_FAILURE);
+						}
+						op_func = get_op_func(token1);
+						op_func(&top, line_counter);
+					}
 				}
 				else
 				{

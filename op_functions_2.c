@@ -32,11 +32,10 @@ void add_stack(stack_t **top, unsigned int line_number)
  * nop_stack - Function that does not do anything
  *
  * @top: Head of the linked list
- * @line_number: Line countgit
+ * @line_number: Line count
  *
  */
-void nop_stack(stack_t __attribute__((unused)) **top,
-	       unsigned int __attribute__((unused)) line_number)
+void nop_stack(stack_t **top __attribute__((unused)),
+	       unsigned int line_number __attribute__((unused)))
 {
-	;
 }
