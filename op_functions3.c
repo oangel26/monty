@@ -90,6 +90,36 @@ void pchar_stack(stack_t **top, unsigned int line_number)
 		dprintf(2, "L%d: can't pchar, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
+	else
+	{
+		if (((*top)->n >= 65 && (*top)->n <= 90) ||
+			(((*top)->n >= 97 && (*top)->n <= 122)))
+			printf("%c\n", (*top)->n);
+		else
+		{
+			dprintf(2, "L%d: can't pchar, value out of range\n", line_number);
+			free_stack(&(*top));
+			exit(EXIT_FAILURE);
+		}
+	}
+}
+
+
+/**
+ * pstr_stack - Funtion prints the string starting at the top of the stack
+ *
+ * @top: Head of the linked list
+ * @line_number: Line count
+ *
+ */
+void pstr_stack(stack_t **top, unsigned int line_number)
+{
+/* EDGE case: If the stack contains less than two elements */
+	if (*top == NULL || top == NULL)
+	{
+		dprintf(2, "L%d: can't pchar, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 
 	else
 	{
