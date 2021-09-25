@@ -47,7 +47,6 @@ int main(int argc, char *argv[])
 		continue;
 	      if (strcmp(token1, "push") == 0)
 		{
-		  printf("strcpm con push es igual a %s\n", token1);
 		  token2 = strtok(NULL, "  \n");
 		  if (token2 == NULL)
 		    {
@@ -63,7 +62,6 @@ int main(int argc, char *argv[])
 		    }
 		  else
 		    {
-		      printf("se metio en else %s\n", token2);
 		      number = atoi(token2);
 		      printf("%d\n", number);
 		      if (number == '\0')
