@@ -4,6 +4,28 @@
 
 int number;
 
+
+/**
+ * is_number - check if an string is number
+ *
+ * @s: pointr to char (string)
+ * Return: 0 on succes 1 if it fails.
+ */
+int is_number(char *s)
+{
+  if (s[0] == '-')
+    s++;
+  while(*s != '\0')
+    {
+      if (*s >= '0' && *s <= '9')
+	s++;
+      else
+	return (1);
+    }
+  return (0);
+}
+
+
 /**
  * main - check the code
  *
@@ -55,7 +77,7 @@ int main(int argc, char *argv[])
 		      free_stack(&top);
 		      exit(EXIT_FAILURE);
 		    }
-		  else if (strcmp(token2, "0") == 0)
+		  else if ((strcmp(token2, "0") == 0) || (strcmp(token2, "-0") == 0))
 		    {
 		      number = 0;
 		      op_func = get_op_func(token1);
@@ -64,7 +86,7 @@ int main(int argc, char *argv[])
 		  else
 		    {
 		      number = atoi(token2);
-		      if (number == '\0')
+		      if (number == '\0' || (is_number(token2) == 1))
 			{
 			  dprintf(2, "L%d: usage: push integer\n", line_counter);
 			  free_stack(&top);
@@ -92,3 +114,4 @@ int main(int argc, char *argv[])
   free_stack(&top);
   return (0);
 }
+
