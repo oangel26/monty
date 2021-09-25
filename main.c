@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
 	    {
 	      line_counter++;
 	      token1 = strtok(str, " \n");
-	      if (is_comment(token1) == 0)
+	      if (is_comment(token1) == 1)
 		continue;
 	      if (token1 == NULL)
 		continue;
