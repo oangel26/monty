@@ -115,20 +115,25 @@ void pchar_stack(stack_t **top, unsigned int line_number)
  */
 void pstr_stack(stack_t **top, unsigned int line_number)
 {
-	if (*top == NULL || top == NULL)
+  stack_t *ptr = *top;
+  
+  if (*top == NULL || top == NULL)
+    {
+	  dprintf(2, "L%d: can't pstr, stack empty\n", line_number);
+	  exit(EXIT_FAILURE);
+    }
+  else
+    {
+      while(ptr != NULL)
 	{
-		dprintf(2, "L%d: can't pstr, stack empty\n", line_number);
-		exit(EXIT_FAILURE);
+	  if ((ptr)->n >= 65 && (ptr)->n <= 90)
+	    printf("%c", (ptr)->n);
+	  else if ((ptr)->n >= 97 && (ptr)->n <= 122)
+	    printf("%c", (ptr)->n);
+	  else
+	    break;
+	  ptr = (ptr)->next;
 	}
-	else
-	{
-		while(*top != NULL)
-		{
-			if ((*top)->n >= 65 && (*top)->n <= 90)
-				printf("%c", (*top)->n);
-			else if ((*top)->n >= 97 && (*top)->n <= 122)
-				printf("%c", (*top)->n);
-			*top = (*top)->next;
-		}
-	}
+      printf("\n");
+    }
 }
