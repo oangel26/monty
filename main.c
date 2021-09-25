@@ -4,6 +4,19 @@
 
 int number;
 
+/**
+ * is_comment - check if the first char is a comment #
+ *
+ * @s: pointr to char (string)
+ * Return: 0 on succes 1 if it fails.
+ */
+int is_comment(char *s)
+{
+  if (s[0] == '#')
+    return (1);
+  else
+    return (0);
+}
 
 /**
  * is_number - check if an string is number
@@ -66,6 +79,8 @@ int main(int argc, char *argv[])
 	    {
 	      line_counter++;
 	      token1 = strtok(str, " \n");
+	      if (is_comment(token1) == 0)
+		continue;
 	      if (token1 == NULL)
 		continue;
 	      if (strcmp(token1, "push") == 0)
