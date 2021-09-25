@@ -3,6 +3,7 @@
 #define BUFFER 1024
 
 int number;
+
 /**
  * main - check the code
  *
@@ -63,7 +64,6 @@ int main(int argc, char *argv[])
 		  else
 		    {
 		      number = atoi(token2);
-		      printf("%d\n", number);
 		      if (number == '\0')
 			{
 			  dprintf(2, "L%d: usage: push integer\n", line_counter);
