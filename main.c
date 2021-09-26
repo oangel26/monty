@@ -10,6 +10,7 @@ int number;
  * @s: pointr to char (string)
  * Return: 0 on succes 1 if it fails.
  */
+
 int is_comment(char *s)
 {
   if (s[0] == '#')
@@ -24,6 +25,7 @@ int is_comment(char *s)
  * @s: pointr to char (string)
  * Return: 0 on succes 1 if it fails.
  */
+
 int is_number(char *s)
 {
   if (s[0] == '-')
@@ -77,11 +79,13 @@ int main(int argc, char *argv[])
 	  /* Read file line by line until EOF */
 	  while ((str = fgets(line, BUFFER, fp)) != NULL)
 	    {
-	      line_counter++;
-	      token1 = strtok(str, " \n");
-	      if (is_comment(token1) == 1)
+	      line_counter++; /* Line counter of the monty file */
+	      token1 = strtok(str, " \n"); /* opcode of the monty file */
+	      if (token1 == NULL) /* if opcode is new line continue to next line */
+                continue;
+	      if (is_comment(token1) == 1) /* if first char is # continue to next line */
 		continue;
-	      if (token1 == NULL)
+	      if (token1 == NULL) /* if opcode is new line continue to next line */
 		continue;
 	      if (strcmp(token1, "push") == 0)
 		{
