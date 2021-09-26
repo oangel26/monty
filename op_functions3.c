@@ -149,13 +149,7 @@ void rotl_stack(stack_t **top, unsigned int line_number)
   stack_t *ptr = *top;
   
   /* EDGE case: If the stack is empty */
-  if (*top == NULL || top == NULL)
-    {
-      dprintf(2, "L%d: can't rolt, stack empty\n", line_number);
-      exit(EXIT_FAILURE);
-    }
-  /* EDGE case: if the stack is one only one node */
-  else if ((*top)->next == NULL)
+  if (*top == NULL || top == NULL || (*top)->next == NULL)
     return;
     
   else
