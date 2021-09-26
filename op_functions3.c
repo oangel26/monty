@@ -136,3 +136,37 @@ void pstr_stack(stack_t **top, unsigned int line_number __attribute__((unused)))
       printf("\n");
     }
 }
+
+/**
+ * rotl _stack - Function that rotates the stack to the top.
+ *
+ * @top: Head of the linked list
+ * @line_number: Line count
+ *
+ */
+void pchar_stack(stack_t **top, unsigned int line_number)
+{
+  stack_t *ptr = *top;
+  
+  /* EDGE case: If the stack is empty */
+  if (*top == NULL || top == NULL)
+    {
+      dprintf(2, "L%d: can't rolt, stack empty\n", line_number);
+      exit(EXIT_FAILURE);
+    }
+  /* EDGE case: if the stack is one only one node */
+  else if ((*top)->next == NULL)
+    return;
+    
+  else
+    {
+      while (ptr->next != NULL)
+	ptr = ptr->next;
+
+      ptr->next = *top;
+      (*top)->prev = ptr;
+      (*top)->next->prev = NULL;
+      (*top)->next = (*top);
+      (ptr)->next->next = NULL;
+    }
+}
