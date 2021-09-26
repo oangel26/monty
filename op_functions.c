@@ -27,7 +27,6 @@ void push_stack(stack_t **top,
 	new_top->n = number;
 	new_top->prev = NULL;
 	new_top->next = NULL;
-
 	if (*top == NULL)
 		*top = new_top;
 	else

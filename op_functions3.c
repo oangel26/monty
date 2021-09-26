@@ -113,7 +113,7 @@ void pchar_stack(stack_t **top, unsigned int line_number)
  * @line_number: Line count
  *
  */
-void pstr_stack(stack_t **top, unsigned int line_number)
+void pstr_stack(stack_t **top, unsigned int line_number __attribute__((unused)))
 {
   stack_t *ptr = *top;
   
