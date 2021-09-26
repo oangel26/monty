@@ -11,25 +11,19 @@ void rotr_stack(stack_t **top, unsigned int line_number __attribute__((unused)))
 {
   stack_t *ptr = *top;
   
-  /* EDGE case: If the stack is empty */
-  if (*top == NULL || top == NULL)
-    {
-      dprintf(2, "L%d: can't rolt, stack empty\n", line_number);
-      exit(EXIT_FAILURE);
-    }
-  /* EDGE case: if the stack is one only one node */
-  else if ((*top)->next == NULL)
+  /* EDGE case: If the stack is empty or only one node*/
+  if (*top == NULL || top == NULL || (*top)->next == NULL)
     return;
-    
+     
   else
     {
       while (ptr->next != NULL)
 	ptr = ptr->next;
 
-      (*top) = (*top)->next;
-      ptr->next = (*top)->prev;
-      (*top)->prev->next = NULL;
-      (*top)->prev->prev = ptr;
-      (*top)->prev = NULL;
+      ptr->next = *top;
+      (*top)->prev = ptr;
+      ptr->prev->next = NULL;
+      ptr->prev = NULL;
+      *top = ptr;
     }
 }
