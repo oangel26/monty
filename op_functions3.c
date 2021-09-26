@@ -163,10 +163,10 @@ void rotl_stack(stack_t **top, unsigned int line_number)
       while (ptr->next != NULL)
 	ptr = ptr->next;
 
-      ptr->next = *top;
-      (*top)->prev = ptr;
-      (*top)->next->prev = NULL;
-      (*top)->next = (*top);
-      (ptr)->next->next = NULL;
+      (*top) = (*top)->next;
+      ptr->next = (*top)->prev;
+      (*top)->prev->next = NULL;
+      (*top)->prev->prev = ptr;
+      (*top)->prev = NULL;
     }
 }
