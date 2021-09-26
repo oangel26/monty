@@ -119,8 +119,7 @@ void pstr_stack(stack_t **top, unsigned int line_number)
   
   if (*top == NULL || top == NULL)
     {
-	  dprintf(2, "L%d: can't pstr, stack empty\n", line_number);
-	  exit(EXIT_FAILURE);
+      printf("\n");
     }
   else
     {
