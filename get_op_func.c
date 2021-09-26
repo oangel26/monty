@@ -23,6 +23,7 @@ void (*get_op_func(char *op_code))(stack_t**, unsigned int)
 		{"mod", mod_stack},
 		{"pchar", pchar_stack},
 		{"pstr", pstr_stack},
+		{"rotl", rotl_stack},
 		{NULL, NULL}
 	};
 
