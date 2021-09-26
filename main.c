@@ -57,36 +57,31 @@ int main(int argc, char *argv[])
   stack_t *top = NULL;
   void (*op_func)(stack_t**, unsigned int);
   
-  /* If the user doesnt give any file or more than one argu to the program */
-  if (argc != 2)
+  if (argc != 2) /* If program is not executed correcly */
     {
       dprintf(2, "USAGE: monty file\n");
       exit(EXIT_FAILURE);
     }
-  /* If user gives a file or arg to the program */
-  else
+  else /* If user gives a file or arg to the program */
     {
-      fp = fopen(argv[1], "r");
-      
-      /* If it’s not possible to open the file */
-      if (fp == 0)
+      fp = fopen(argv[1], "r"); /* file open and read */
+      if (fp == 0) /* If it’s not possible to open the file */
 	{
 	  dprintf(2, "Error: Can't open file %s\n", argv[1]);
 	  exit(EXIT_FAILURE);
 	}
       else
-	{
-	  /* Read file line by line until EOF */
+	{ /* Read file line by line until EOF */
 	  while ((str = fgets(line, BUFFER, fp)) != NULL)
 	    {
 	      line_counter++; /* Line counter of the monty file */
-	      token1 = strtok(str, " \n"); /* opcode of the monty file */
-	      if (token1 == NULL) /* if opcode is new line continue to next line */
-                continue;
-	      if (is_comment(token1) == 1) /* if first char is # continue to next line */
-		continue;
-	      if (token1 == NULL) /* if opcode is new line continue to next line */
-		continue;
+	      token1 = strtok(str, " \n"); /* opcode */
+	      if (token1 == NULL)
+                continue;  /* if opcode is empty: conintue */
+	      if (is_comment(token1) == 1)
+		continue; /* if first char is # continue */
+	      if (token1 == NULL) 
+		continue; /* if opcode is empty continue to next line */
 	      if (strcmp(token1, "push") == 0)
 		{
 		  token2 = strtok(NULL, "  \n");
@@ -133,4 +128,3 @@ int main(int argc, char *argv[])
   free_stack(&top);
   return (0);
 }
-
