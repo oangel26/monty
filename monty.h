@@ -63,6 +63,7 @@ void mul_stack(stack_t **top, unsigned int line_number);
 void mod_stack(stack_t **top, unsigned int line_number);
 void pchar_stack(stack_t **top, unsigned int line_number);
 void pstr_stack(stack_t **top, unsigned int line_number __attribute__((unused)));
-void rotl_stack(stack_t **top, unsigned int line_number);
+void rotl_stack(stack_t **top, unsigned int line_number __attribute__((unused)));
+void rotr_stack(stack_t **top, unsigned int line_number __attribute__((unused)));
 
 #endif /* MONTY_H */
