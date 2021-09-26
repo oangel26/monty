@@ -36,14 +36,14 @@ void rotr_stack(stack_t **top, unsigned int line_number __attribute__((unused)))
  * @line_number: Line count
  *
  */
-void push_stack(stack_t **top,
+void push_queue(stack_t **top,
 		unsigned int line_number __attribute__((unused)))
 {
 	stack_t *new_queue;
 	stack_t *ptr = *top;
 
 	new_queue = malloc(sizeof(stack_t));
-	if (new_top == NULL && *top != NULL)
+	if (new_queue == NULL && *top != NULL)
 	{
 		dprintf(2, "Error: malloc failed\n");
 		free_stack(&(*top));
@@ -54,18 +54,57 @@ void push_stack(stack_t **top,
 		dprintf(2, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	while (ptr->next != NULL)
-	  ptr = ptr->next;
-	
-	new_top->n = number;
-	new_top->prev = NULL;
-	new_top->next = NULL;
+	/* Node creation */
+	new_queue->n = number;
+	new_queue->prev = NULL;
+	new_queue->next = NULL;
+
+	/* EDGE case: list is empty */
 	if (*top == NULL)
-		*top = new_top;
+                *top = new_queue;
 	else
+	  {
+	    /* Iterate *ptr until the last node of queue */
+	    while (ptr->next != NULL)
+	      ptr = ptr->next;
+	    
+	    ptr->next = new_queue;
+	    new_queue->prev = ptr;
+	  }
+}
+
+/**
+ * is_comment - check if the first char is a comment #
+ *
+ * @s: pointr to char (string)
+ * Return: 0 on succes 1 if it fails.
+ */
+int is_comment(char *s)
+{
+	if (s[0] == '#')
+		return (1);
+	else
+		return (0);
+}
+
+/**
+ * is_number - check if an string is number
+ *
+ * @s: pointr to char (string)
+ * Return: 0 on succes 1 if it fails.
+ */
+int is_number(char *s)
+{
+	if (s[0] == '-')
+		s++;
+	while (*s != '\0')
 	{
-		new_top->next = *top;
-		(*top)->prev = new_top;
-		*top = new_top;
-	}
+		if (*s >= '0' && *s <= '9')
+			s++;
+		else
+		{
+			return (1);
+		}
+    }
+	return (0);
 }
